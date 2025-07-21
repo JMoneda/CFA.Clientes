@@ -15,7 +15,7 @@ namespace CFA.Clientes.Infrastructure.Services
             _repository = repository;
         }
 
-        // ✅ Registrar Cliente
+        // Registrar Cliente
         public async Task<(bool Success, Cliente? Cliente, string? Message)> RegistrarClienteAsync(ClienteCreateDto dto)
         {
             var cliente = MapDtoToCliente(dto);
@@ -59,7 +59,7 @@ namespace CFA.Clientes.Infrastructure.Services
             return (true, clienteCompleto, "Cliente registrado correctamente.");
         }
 
-        // ✅ Actualizar Cliente
+        // Actualizar Cliente
         public async Task<(bool Success, Cliente? Cliente, string? Message)> ActualizarClienteAsync(int clienteId, ClienteUpdateDto dto)
         {
             var clienteExistente = await _repository.GetByIdAsync(clienteId);
@@ -98,7 +98,7 @@ namespace CFA.Clientes.Infrastructure.Services
             return (true, clienteActualizado, "Cliente actualizado correctamente.");
         }
 
-        // ✅ Eliminar Cliente
+        // Eliminar Cliente
         public async Task<(bool Success, Cliente? Cliente, string? Message)> EliminarClienteAsync(int clienteId)
         {
             var cliente = await _repository.GetByIdAsync(clienteId);
@@ -109,13 +109,13 @@ namespace CFA.Clientes.Infrastructure.Services
             return (true, cliente, "Cliente eliminado correctamente.");
         }
 
-        // ✅ Obtener todos los clientes
+        // Obtener todos los clientes
         public async Task<List<Cliente>> ObtenerTodosLosClientesAsync()
         {
             return await _repository.GetAllAsync();
         }
 
-        // ✅ Buscar por nombre y documento
+        // Buscar por nombre y documento
         public async Task<List<Cliente>> BuscarClientesAsync(string? nombre, string? documento)
         {
             var clientes = await _repository.GetAllAsync();
@@ -131,7 +131,7 @@ namespace CFA.Clientes.Infrastructure.Services
             .ToList();
         }
 
-        // ✅ Buscar por número de documento
+        // Buscar por número de documento
         public async Task<List<Cliente>> BuscarPorNumeroDocumentoAsync(string numeroDocumento)
         {
             var clientes = await _repository.GetAllAsync();
@@ -142,7 +142,7 @@ namespace CFA.Clientes.Infrastructure.Services
                 .ToList();
         }
 
-        // ✅ Buscar por rango de fechas
+        // Buscar por rango de fechas
         public async Task<List<Cliente>> BuscarPorRangoFechasAsync(DateTime fechaInicio, DateTime fechaFin)
         {
             var clientes = await _repository.GetAllAsync();
@@ -154,7 +154,7 @@ namespace CFA.Clientes.Infrastructure.Services
                 .ToList();
         }
 
-        // ✅ Clientes con múltiples teléfonos
+        // Clientes con múltiples teléfonos
         public async Task<List<ClienteTelefonosDto>> ObtenerClientesConMultiplesTelefonosAsync()
         {
             var datos = await _repository.GetAllAsync();
@@ -169,7 +169,7 @@ namespace CFA.Clientes.Infrastructure.Services
                 .ToList();
         }
 
-        // ✅ Clientes con múltiples direcciones
+        // Clientes con múltiples direcciones
         public async Task<List<ClienteDireccionesDto>> ObtenerClientesConMultiplesDireccionesAsync()
         {
             var datos = await _repository.GetAllAsync();
@@ -185,7 +185,7 @@ namespace CFA.Clientes.Infrastructure.Services
         }
 
 
-        // 🔥 Métodos auxiliares
+        // Métodos auxiliares
         private Cliente MapDtoToCliente(ClienteCreateDto dto)
         {
             return new Cliente

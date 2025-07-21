@@ -7,18 +7,18 @@ using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 🟢 Configuración de la cadena de conexión (appsettings.json)
+// Configuración de la cadena de conexión (appsettings.json)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// 🟢 Agregar DbContext
+// Agregar DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// 🟢 Inyección de dependencias
+// Inyección de dependencias
 builder.Services.AddScoped<ClienteRepository>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 
-// 🟢 Add Controllers
+// Add Controllers
 builder.Services.AddControllers()
     .AddJsonOptions(opt =>
     {
@@ -26,13 +26,13 @@ builder.Services.AddControllers()
         opt.JsonSerializerOptions.WriteIndented = true;
     });
 
-// 🟢 Swagger
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// 🟢 Middleware
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

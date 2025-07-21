@@ -14,7 +14,7 @@ namespace CFA.Clientes.Infrastructure.Repositories
             _context = context;
         }
 
-        // ✅ Obtener todos los clientes (con teléfonos y direcciones)
+        // Obtener todos los clientes (con teléfonos y direcciones)
         public async Task<List<Cliente>> GetAllAsync()
         {
             return await _context.Clientes
@@ -23,7 +23,7 @@ namespace CFA.Clientes.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        // ✅ Obtener cliente por ID
+        // Obtener cliente por ID
         public async Task<Cliente?> GetByIdAsync(int id)
         {
             return await _context.Clientes
@@ -32,7 +32,7 @@ namespace CFA.Clientes.Infrastructure.Repositories
                 .FirstOrDefaultAsync(c => c.ClienteId == id);
         }
 
-        // ✅ Insertar cliente usando SP
+        // Insertar cliente usando SP
         public async Task<int> InsertarClienteSPAsync(Cliente cliente)
         {
             var clienteIdParam = new SqlParameter
@@ -58,35 +58,35 @@ namespace CFA.Clientes.Infrastructure.Repositories
             return (int)clienteIdParam.Value;
         }
         
-        // ✅ Insertar teléfonos
+        // Insertar teléfonos
         public async Task InsertarTelefonosAsync(IEnumerable<Telefono> telefonos)
         {
             await _context.Telefonos.AddRangeAsync(telefonos);
             await _context.SaveChangesAsync();
         }
 
-        // ✅ Insertar direcciones
+        // Insertar direcciones
         public async Task InsertarDireccionesAsync(IEnumerable<Direccion> direcciones)
         {
             await _context.Direcciones.AddRangeAsync(direcciones);
             await _context.SaveChangesAsync();
         }
 
-        // ✅ Actualizar cliente
+        // Actualizar cliente
         public async Task UpdateAsync(Cliente cliente)
         {
             _context.Clientes.Update(cliente);
             await _context.SaveChangesAsync();
         }
 
-        // ✅ Eliminar cliente (cascada configurada en EF)
+        // Eliminar cliente (cascada configurada en EF)
         public async Task DeleteAsync(Cliente cliente)
         {
             _context.Clientes.Remove(cliente);
             await _context.SaveChangesAsync();
         }
 
-        // 🔥 Devuelve solo nombre completo y cantidad de teléfonos
+        // Devuelve solo nombre completo y cantidad de teléfonos
         public async Task<List<(string NombreCompleto, int CantidadTelefonos)>> ObtenerClientesConMultiplesTelefonosAsync()
         {
             var datos = await _context.Clientes
@@ -107,7 +107,7 @@ namespace CFA.Clientes.Infrastructure.Repositories
 
 
 
-        // 🔥 Devuelve nombre completo y primera dirección
+        // Devuelve nombre completo y primera dirección
         public async Task<List<(string NombreCompleto, string PrimeraDireccion)>> ObtenerClientesConMultiplesDireccionesAsync()
         {
             var datos = await _context.Clientes
